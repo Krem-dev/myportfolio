@@ -42,13 +42,6 @@ export default function StartMenu({ isOpen, onClose, onOpenWindow }: StartMenuPr
     { id: 12, name: 'Certificates', icon: '🏆', path: '/Education', tooltip: 'View certifications' },
   ];
 
-  const recommended = [
-    { id: 1, name: 'Resume_2024.pdf', icon: '📄', time: 'Just now' },
-    { id: 2, name: 'Portfolio_Project', icon: '📁', time: '2 hours ago' },
-    { id: 3, name: 'Meeting_Notes.docx', icon: '📘', time: 'Yesterday' },
-    { id: 4, name: 'Design_Mockup.fig', icon: '🎨', time: '2 days ago' },
-  ];
-
   if (!isOpen) return null;
 
   return (
@@ -56,58 +49,63 @@ export default function StartMenu({ isOpen, onClose, onOpenWindow }: StartMenuPr
       {/* Blur background */}
       <div
         onClick={onClose}
-        className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+        className="fixed inset-0 bg-black/10 backdrop-blur-[2px] z-40 transition-opacity"
       />
 
       {/* WINDOWS 11 START MENU */}
       <div
         onClick={(e) => e.stopPropagation()}
         className="
+          animate-slide-up
           fixed bottom-14 left-4 md:left-6 z-50
-          w-[calc(100vw-2rem)] md:w-[580px]
+          w-[calc(100vw-2rem)] md:w-[640px]
           h-[calc(100vh-8rem)] md:h-[720px]
           max-h-[720px]
-          bg-white/95 backdrop-blur-2xl
-          border border-gray-200 shadow-[0_8px_40px_rgba(0,0,0,0.15)]
+          bg-white/85 backdrop-blur-xl
+          border border-white/20 shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_20px_50px_-12px_rgba(0,0,0,0.2)]
           rounded-xl overflow-hidden 
           flex flex-col
         "
       >
         {/* Search */}
-        <div className="px-7 pt-7 pb-5">
-          <div className="relative">
+        <div className="px-6 pt-6 pb-4">
+          <div className="relative group">
             <Search
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-blue-500 transition-colors"
               size={18}
             />
             <input
               placeholder="Search for apps, settings, and documents"
               className="
-                w-full py-3 pl-12 pr-4
-                bg-gray-50
-                border border-gray-200
-                rounded-lg shadow-sm
+                w-full py-2.5 pl-12 pr-4
+                bg-[#f3f3f3]
+                border-b-2 border-transparent focus:border-blue-500
+                rounded-full
                 text-sm text-gray-900 placeholder-gray-500
-                focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500
-                transition-all
+                focus:outline-none focus:bg-white
+                transition-all duration-200
               "
             />
           </div>
         </div>
 
         {/* CONTENT */}
-        <div className="flex-1 overflow-y-auto px-7 pb-6">
+        <div className="flex-1 overflow-y-auto px-6 md:px-8 pb-6">
 
           {/* Pinned Apps */}
-          <div className="mb-12">
-            <div className="flex items-center justify-between mb-5">
-              <h3 className="text-sm font-semibold text-gray-900">Pinned</h3>
-              <button className="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
-                All apps <span>→</span>
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-4 px-2">
+              <h3 className="text-xs font-bold text-gray-900 tracking-wide">Pinned</h3>
+              <button className="
+                px-2 py-1 rounded hover:bg-gray-100
+                text-xs text-gray-600 hover:text-gray-900 font-medium 
+                flex items-center gap-1 transition-colors
+              ">
+                All apps <span>›</span>
               </button>
             </div>
 
-            <div className="grid grid-cols-4 md:grid-cols-6 gap-3 md:gap-4">
+            <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
               {apps.map((app) => (
                 <button
                   key={app.id}
@@ -121,16 +119,16 @@ export default function StartMenu({ isOpen, onClose, onOpenWindow }: StartMenuPr
                   }}
                   title={app.tooltip}
                   className="
-                    group flex flex-col items-center justify-center gap-2
-                    p-3 rounded-lg
-                    hover:bg-gray-100
+                    group flex flex-col items-center gap-2
+                    p-2 rounded-md
+                    hover:bg-white/60 hover:shadow-sm active:scale-95
                     transition-all duration-150
                   "
                 >
-                  <div className="text-3xl">
+                  <div className="text-3xl p-2 bg-white rounded-lg shadow-sm group-hover:shadow transition-shadow">
                     {app.icon}
                   </div>
-                  <span className="text-[10px] text-gray-700 text-center leading-tight font-medium">
+                  <span className="text-[11px] text-gray-700 text-center font-medium line-clamp-1 w-full">
                     {app.name}
                   </span>
                 </button>
@@ -138,52 +136,99 @@ export default function StartMenu({ isOpen, onClose, onOpenWindow }: StartMenuPr
             </div>
           </div>
 
-          {/* Spacer */}
-          <div className="h-32"></div>
+          {/* Recommended / Quick Links */}
+          <div className="mb-6">
+             <div className="flex items-center justify-between mb-4 px-2">
+              <h3 className="text-xs font-bold text-gray-900 tracking-wide">Recommended</h3>
+              <button className="
+                px-2 py-1 rounded hover:bg-gray-100
+                text-xs text-gray-600 hover:text-gray-900 font-medium 
+                flex items-center gap-1 transition-colors
+              ">
+                More <span>›</span>
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <a href="mailto:your.email@example.com" className="
+                flex items-center gap-3 p-2 rounded-md 
+                hover:bg-gray-100 group transition-colors
+              ">
+                <div className="w-10 h-10 flex items-center justify-center bg-blue-50 text-blue-600 rounded-full">
+                  📧
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium text-gray-800 group-hover:text-black">Email Me</span>
+                  <span className="text-xs text-gray-500">Get in touch directly</span>
+                </div>
+              </a>
 
-          {/* Quick Links */}
-          <div className="mb-10 border-t border-gray-200 pt-12">
-            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">Quick Links</h4>
-            <div className="grid grid-cols-2 gap-3">
-              <a href="#" className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                <span className="text-xl">📧</span>
-                <span className="text-sm text-gray-700 font-medium">Email Me</span>
+              <a href="/Resume.pdf" target="_blank" className="
+                flex items-center gap-3 p-2 rounded-md 
+                hover:bg-gray-100 group transition-colors
+              ">
+                <div className="w-10 h-10 flex items-center justify-center bg-orange-50 text-orange-600 rounded-full">
+                  📄
+                </div>
+                 <div className="flex flex-col">
+                  <span className="text-sm font-medium text-gray-800 group-hover:text-black">Resume.pdf</span>
+                  <span className="text-xs text-gray-500">Professional background</span>
+                </div>
               </a>
-              <a href="#" className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                <span className="text-xl">📄</span>
-                <span className="text-sm text-gray-700 font-medium">Resume</span>
+
+              <a href="https://linkedin.com" target="_blank" className="
+                flex items-center gap-3 p-2 rounded-md 
+                hover:bg-gray-100 group transition-colors
+              ">
+                <div className="w-10 h-10 flex items-center justify-center bg-blue-50 text-[#0077b5] rounded-full">
+                  💼
+                </div>
+                 <div className="flex flex-col">
+                  <span className="text-sm font-medium text-gray-800 group-hover:text-black">LinkedIn</span>
+                  <span className="text-xs text-gray-500">Connect professionally</span>
+                </div>
               </a>
-              <a href="#" className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                <span className="text-xl">💼</span>
-                <span className="text-sm text-gray-700 font-medium">LinkedIn</span>
-              </a>
-              <a href="#" className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                <span className="text-xl">🐙</span>
-                <span className="text-sm text-gray-700 font-medium">GitHub</span>
+
+              <a href="https://github.com" target="_blank" className="
+                flex items-center gap-3 p-2 rounded-md 
+                hover:bg-gray-100 group transition-colors
+              ">
+                <div className="w-10 h-10 flex items-center justify-center bg-gray-50 text-gray-900 rounded-full">
+                  🐙
+                </div>
+                 <div className="flex flex-col">
+                  <span className="text-sm font-medium text-gray-800 group-hover:text-black">GitHub</span>
+                  <span className="text-xs text-gray-500">View source code</span>
+                </div>
               </a>
             </div>
           </div>
 
-          {/* Quote Slider - At Bottom - Bigger */}
-          <div className="mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 relative overflow-hidden min-h-[140px] flex flex-col justify-center">
-              <Quote className="absolute top-4 right-4 text-blue-200" size={48} />
-              <div className="relative">
-                <p className="text-gray-800 text-base leading-relaxed mb-4 pr-12">
-                  {quotes[currentQuote].text}
-                </p>
-                <p className="text-gray-600 text-sm font-medium">
-                  — {quotes[currentQuote].author}
-                </p>
+          {/* Quote Slider */}
+          <div className="mt-auto">
+            <div className="bg-gradient-to-br from-indigo-50/50 to-blue-50/50 border border-blue-100/50 rounded-xl p-6 relative overflow-hidden">
+              <div className="flex gap-4">
+                <div className="text-blue-300 mt-1">
+                   <Quote size={24} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-gray-700 text-sm leading-relaxed mb-3 font-medium italic">
+                    "{quotes[currentQuote].text}"
+                  </p>
+                  <p className="text-gray-500 text-xs font-semibold uppercase tracking-wide">
+                    — {quotes[currentQuote].author}
+                  </p>
+                </div>
               </div>
-              <div className="flex justify-center gap-2 mt-5">
+              
+              <div className="flex justify-end gap-1.5 mt-3">
                 {quotes.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setCurrentQuote(idx)}
                     className={`
-                      h-2 rounded-full transition-all
-                      ${idx === currentQuote ? "w-10 bg-blue-500" : "w-2 bg-gray-300 hover:bg-gray-400"}
+                      h-1.5 rounded-full transition-all duration-300
+                      ${idx === currentQuote ? "w-6 bg-blue-400" : "w-1.5 bg-gray-200 hover:bg-gray-300"}
                     `}
                   />
                 ))}
@@ -192,16 +237,20 @@ export default function StartMenu({ isOpen, onClose, onOpenWindow }: StartMenuPr
           </div>
         </div>
 
+
         {/* Footer */}
         <div className="
-          border-t border-gray-200 bg-gray-50
-          px-7 py-4 flex items-center justify-between
+          border-t border-gray-200/60 bg-gray-50/50 backdrop-blur-sm
+          px-6 md:px-8 py-4 flex items-center justify-between
         ">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center text-xs font-semibold text-white">
+          <div className="flex items-center gap-3 hover:bg-white/50 p-1.5 -ml-1.5 rounded-md transition-colors cursor-pointer">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-blue-600 flex items-center justify-center text-xs font-bold text-white shadow-sm">
               JD
             </div>
-            <span className="text-sm font-medium text-gray-900">John Doe</span>
+            <div className="flex flex-col">
+               <span className="text-xs font-semibold text-gray-900">John Doe</span>
+               <span className="text-[10px] text-gray-500">Pro User</span>
+            </div>
           </div>
 
           <div className="flex items-center gap-1">
