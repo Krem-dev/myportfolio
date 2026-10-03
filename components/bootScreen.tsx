@@ -1,114 +1,43 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Spinner } from '@fluentui/react-components';
+import { profile } from '@/data/profile';
+import Monogram from './monogram';
 
-interface BootScreenProps {
-  onComplete: () => void;
-}
+const BOOT_MS = 1100;
 
-export default function BootScreen({ onComplete }: BootScreenProps) {
-  const [progress, setProgress] = useState(0);
-
+export default function BootScreen({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
-    const duration = 2500;
-    const steps = 50;
-    const interval = duration / steps;
-
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setTimeout(onComplete, 300);
-          return 100;
-        }
-        return prev + (100 / steps);
-      });
-    }, interval);
-
-    return () => clearInterval(timer);
+    const timer = setTimeout(onComplete, BOOT_MS);
+    const skip = () => onComplete();
+    window.addEventListener('keydown', skip);
+    window.addEventListener('pointerdown', skip);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('keydown', skip);
+      window.removeEventListener('pointerdown', skip);
+    };
   }, [onComplete]);
 
   return (
     <motion.div
-      className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50"
+      className="fixed inset-0 z-[10000] flex flex-col items-center justify-center gap-10 bg-[#0b1020]"
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.35 }}
+      aria-label="Loading"
     >
-      <div className="flex flex-col items-center gap-12">
-        <motion.svg
-          viewBox="0 0 100 100"
-          className="w-24 h-24"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.rect
-            x="10"
-            y="10"
-            width="35"
-            height="35"
-            fill="#0078d4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          />
-          <motion.rect
-            x="55"
-            y="10"
-            width="35"
-            height="35"
-            fill="#0078d4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          />
-          <motion.rect
-            x="10"
-            y="55"
-            width="35"
-            height="35"
-            fill="#0078d4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          />
-          <motion.rect
-            x="55"
-            y="55"
-            width="35"
-            height="35"
-            fill="#0078d4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          />
-        </motion.svg>
-
-        <div className="flex flex-col items-center gap-4">
-          <motion.div
-            className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            <motion.div
-              className="h-full bg-gradient-to-r from-blue-500 to-blue-400"
-              style={{ width: `${progress}%` }}
-              transition={{ duration: 0.1 }}
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="text-gray-400 text-sm"
-          >
-            {progress < 100 ? 'Loading...' : 'Ready'}
-          </motion.div>
-        </div>
-      </div>
+      <motion.div
+        className="flex flex-col items-center gap-4"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, ease: [0.1, 0.9, 0.2, 1] }}
+      >
+        <Monogram size={72} />
+        <span className="text-[15px] tracking-wide text-white/80">{profile.name}</span>
+      </motion.div>
+      <Spinner size="small" appearance="inverted" />
     </motion.div>
   );
 }

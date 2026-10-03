@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Isaac Yaw Amponsah — Portfolio
 
-## Getting Started
+A Windows 11–style portfolio built with Next.js, Fluent UI v9 and Tailwind CSS. Visitors land on a desktop with the About window already open; on phones it becomes a home screen and apps open full-screen.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Editing content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All text lives in [`data/profile.ts`](data/profile.ts) — name, bio, projects, experience, education, certifications, skills and links. Every window reads from it, so update it once and the whole site (including the printable résumé) follows.
 
-## Learn More
+Optional extras:
 
-To learn more about Next.js, take a look at the following resources:
+- **Photo:** add a square image at `public/avatar.jpg` and set `photo: '/avatar.jpg'`.
+- **Résumé PDF:** add `public/resume.pdf` and set `resumePdf: '/resume.pdf'` to show a Download button. Leave references and phone numbers out of the public copy.
+- **Contact form delivery:** create a form at [formspree.io](https://formspree.io) and set `NEXT_PUBLIC_FORMSPREE_ID` in `.env.local`. Without it, the form opens the visitor's email app with the message pre-filled.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Path | What it is |
+| --- | --- |
+| `components/desktop.tsx` | Desktop, phone home screen and window layer |
+| `components/window.tsx` | Window frame: drag, resize, minimize, maximize |
+| `components/taskbar.tsx`, `startMenu.tsx` | Taskbar and searchable Start menu |
+| `components/apps/` | The content of each window |
+| `components/appMeta.tsx` | App list: titles, icons, default sizes |
+| `store/` | Window manager and theme state (Zustand) |

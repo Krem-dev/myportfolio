@@ -1,42 +1,140 @@
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Map Fluent UI design tokens (CSS variables set by FluentProvider) into Tailwind,
+   so layout utilities and Fluent components share one colour system and both themes. */
+@theme inline {
+  --color-fg1: var(--colorNeutralForeground1);
+  --color-fg2: var(--colorNeutralForeground2);
+  --color-fg3: var(--colorNeutralForeground3);
+  --color-fg4: var(--colorNeutralForeground4);
+  --color-bg1: var(--colorNeutralBackground1);
+  --color-bg2: var(--colorNeutralBackground2);
+  --color-bg3: var(--colorNeutralBackground3);
+  --color-subtle-hover: var(--colorSubtleBackgroundHover);
+  --color-subtle-pressed: var(--colorSubtleBackgroundPressed);
+  --color-stroke1: var(--colorNeutralStroke1);
+  --color-stroke2: var(--colorNeutralStroke2);
+  --color-stroke3: var(--colorNeutralStroke3);
+  --color-brand: var(--colorBrandForeground1);
+  --color-brand-bg: var(--colorBrandBackground);
+  --color-brand-subtle: var(--colorBrandBackground2);
+  --color-success: var(--colorPaletteGreenForeground1);
+  --color-success-bg: var(--colorPaletteGreenBackground1);
+
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Roboto, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
 }
 
-html, body {
-  width: 100%;
+:root {
+  /* Windows 11 surfaces (WinUI 3 brushes, flattened to solid colours). */
+  --win-mica: #f3f3f3;          /* window base */
+  --win-layer: #f9f9f9;         /* content layer inside a window */
+  --win-card: #ffffff;          /* card / setting card */
+  --win-card-hover: #f6f6f6;
+  --win-card-stroke: #e5e5e5;
+  --win-divider: #ebebeb;
+  --win-acrylic: rgb(243 243 243 / 0.94); /* taskbar, Start, flyouts */
+  --win-acrylic-stroke: rgb(0 0 0 / 0.1);
+  --win-subtle-hover: rgb(0 0 0 / 0.04);
+  --win-subtle-pressed: rgb(0 0 0 / 0.025);
+  --win-wallpaper: #a9c3ec;
+  --win-wallpaper-image: url(/wallpaper-light.svg);
+  --win-shadow-active: 0 0 0 1px rgb(0 0 0 / 0.1), 0 32px 64px rgb(0 0 0 / 0.19), 0 2px 21px rgb(0 0 0 / 0.15);
+  --win-shadow-inactive: 0 0 0 1px rgb(0 0 0 / 0.08), 0 16px 32px rgb(0 0 0 / 0.12), 0 2px 10px rgb(0 0 0 / 0.08);
+  --win-flyout-shadow: 0 0 0 1px rgb(0 0 0 / 0.08), 0 8px 16px rgb(0 0 0 / 0.14);
+}
+
+:root[data-theme="dark"] {
+  --win-mica: #202020;
+  --win-layer: #272727;
+  --win-card: #2b2b2b;
+  --win-card-hover: #323232;
+  --win-card-stroke: #1d1d1d;
+  --win-divider: #333333;
+  --win-acrylic: rgb(32 32 32 / 0.94);
+  --win-acrylic-stroke: rgb(255 255 255 / 0.08);
+  --win-subtle-hover: rgb(255 255 255 / 0.06);
+  --win-subtle-pressed: rgb(255 255 255 / 0.04);
+  --win-wallpaper: #081022;
+  --win-wallpaper-image: url(/wallpaper-dark.svg);
+  --win-shadow-active: 0 0 0 1px rgb(255 255 255 / 0.08), 0 32px 64px rgb(0 0 0 / 0.56), 0 2px 21px rgb(0 0 0 / 0.55);
+  --win-shadow-inactive: 0 0 0 1px rgb(255 255 255 / 0.06), 0 16px 32px rgb(0 0 0 / 0.4), 0 2px 10px rgb(0 0 0 / 0.35);
+  --win-flyout-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 8px 16px rgb(0 0 0 / 0.36);
+}
+
+html,
+body {
   height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
 }
 
 body {
-  background: #0078d4;
+  background: var(--win-wallpaper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Windows 11 overlay scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--colorNeutralStroke1) transparent;
 }
 
 ::-webkit-scrollbar {
-  width: 16px;
-  height: 16px;
-}
-
-::-webkit-scrollbar-track {
-  background: #e0e0e0;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c0c0c0;
-  border: 1px solid #808080;
+  background: var(--colorNeutralStroke1);
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-clip: content-box;
 }
 
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.animate-slide-up {
-  animation: slideUp 0.2s ease-out forwards;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print only the résumé page */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #resume-print,
+  #resume-print * {
+    visibility: visible;
+  }
+
+  #resume-print {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    color: #000 !important;
+    background: #fff !important;
+  }
 }
