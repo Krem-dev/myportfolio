@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Spinner } from '@fluentui/react-components';
 import { profile } from '@/data/profile';
-import Monogram from './monogram';
+import UserTile from './userTile';
 
 const BOOT_MS = 1100;
 
@@ -34,7 +34,7 @@ export default function BootScreen({ onComplete }: { onComplete: () => void }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4, ease: [0.1, 0.9, 0.2, 1] }}
       >
-        <Monogram size={72} />
+        <UserTile size={72} />
         <span className="text-[15px] tracking-wide text-white/80">{profile.name}</span>
       </motion.div>
       <Spinner size="small" appearance="inverted" />

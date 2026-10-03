@@ -33,6 +33,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Every avatar on the site is this one file. Preloading it here (rather than
+            relying on the boot screen, which only runs once per session) means no
+            window ever paints initials first and swaps to the photo a moment later. */}
+        {profile.photo && <link rel="preload" as="image" href={profile.photo} fetchPriority="high" />}
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
