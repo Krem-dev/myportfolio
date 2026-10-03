@@ -1,31 +1,8 @@
-@import "tailwindcss";
-
-/* Map Fluent UI design tokens (CSS variables set by FluentProvider) into Tailwind,
-   so layout utilities and Fluent components share one colour system and both themes. */
-@theme inline {
-  --color-fg1: var(--colorNeutralForeground1);
-  --color-fg2: var(--colorNeutralForeground2);
-  --color-fg3: var(--colorNeutralForeground3);
-  --color-fg4: var(--colorNeutralForeground4);
-  --color-bg1: var(--colorNeutralBackground1);
-  --color-bg2: var(--colorNeutralBackground2);
-  --color-bg3: var(--colorNeutralBackground3);
-  --color-subtle-hover: var(--colorSubtleBackgroundHover);
-  --color-subtle-pressed: var(--colorSubtleBackgroundPressed);
-  --color-stroke1: var(--colorNeutralStroke1);
-  --color-stroke2: var(--colorNeutralStroke2);
-  --color-stroke3: var(--colorNeutralStroke3);
-  --color-brand: var(--colorBrandForeground1);
-  --color-brand-bg: var(--colorBrandBackground);
-  --color-brand-subtle: var(--colorBrandBackground2);
-  --color-success: var(--colorPaletteGreenForeground1);
-  --color-success-bg: var(--colorPaletteGreenBackground1);
-
-  --font-sans: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Roboto, sans-serif;
-  --font-display: "Segoe UI Variable Display", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-}
-
 :root {
+  /* Segoe UI Variable is the Windows 11 UI face; the rest are platform fallbacks. */
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", Roboto, sans-serif;
+
   /* Windows 11 surfaces (WinUI 3 brushes, flattened to solid colours). */
   --win-mica: #f3f3f3;          /* window base */
   --win-layer: #f9f9f9;         /* content layer inside a window */

@@ -1,23 +1,34 @@
 import type { Metadata, Viewport } from 'next';
 import Providers from '@/components/providers';
-import { profile } from '@/data/profile';
+import { links, profile } from '@/data/profile';
 import './globals.css';
 
 const description = `${profile.name} — ${profile.title}. ${profile.tagline}`;
 
+const title = `${profile.name} — ${profile.title}`;
+const ogImage = { url: '/og.png', width: 1200, height: 630, alt: title };
+
 export const metadata: Metadata = {
-  title: `${profile.name} — ${profile.title}`,
+  // Without this, Next can't turn the relative image paths below into the
+  // absolute URLs that Open Graph and Twitter require.
+  metadataBase: new URL(links.site),
+  title,
   description,
   authors: [{ name: profile.name }],
+  alternates: { canonical: '/' },
   openGraph: {
-    title: `${profile.name} — ${profile.title}`,
+    title,
     description,
     type: 'profile',
+    url: '/',
+    siteName: profile.name,
+    images: [ogImage],
   },
   twitter: {
-    card: 'summary',
-    title: `${profile.name} — ${profile.title}`,
+    card: 'summary_large_image',
+    title,
     description,
+    images: [ogImage],
   },
 };
 

@@ -89,6 +89,8 @@ export const profile = {
 };
 
 export const links = {
+  /** Canonical origin — www redirects here. Used for metadata, sitemap and robots. */
+  site: 'https://iamponsah.com',
   email: 'yawamp27@gmail.com',
   phone: '+233 55 850 7341',
   phoneHref: 'tel:+233558507341',
