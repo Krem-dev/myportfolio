@@ -62,7 +62,7 @@ export const profile = {
   bio: [
     "I'm a Microsoft-certified software engineer (AZ-204) in the Digital Technology team at AngloGold Ashanti's Obuasi Mine. I design, build and support the business applications behind a large mining operation — from Power Platform workflows used by 1,400+ employees to system deployments across multiple sites.",
     'I studied Computer Engineering at KNUST, graduating with First Class honours, and trained in backend engineering with ALX. My work spans Node.js, C# and Python services, SQL Server and Power BI reporting, data integration with FME Workbench and SSIS, ArcGIS Survey123 field apps, and embedded machine learning.',
-    'Outside that, I co-founded SleekTeq Solutions, where I lead the backend on client web and mobile products, and I’m building JUGOP HUB with partners — a request network that connects mining companies with verified suppliers and contractors.',
+    'Outside that, I co-founded SleekTeq Solutions, where I lead the backend on client web and mobile products, and I build JUGOP HUB — a request network that connects mining companies with verified suppliers and contractors.',
     'I enjoy turning slow, manual processes into reliable, well-documented software — and working closely with the people who use it every day.',
   ],
   highlights: [
@@ -164,7 +164,7 @@ export const projects: Project[] = [
     summary:
       'A request network for the global mining industry. Members post a need — equipment, parts, contractors, consultants, services or talent — and it is matched and broadcast to verified providers, who respond with offers. The requester compares, awards one, and both sides rate each other.',
     highlights: [
-      'Built the platform with my partners: public site, member portal, admin console and REST API in one TypeScript monorepo',
+      'Sole engineer: designed and built the whole platform — public site, member portal, admin console and REST API in one TypeScript monorepo',
       'One workflow for every kind of need — post, AI-ranked match, broadcast, offer, award, rate',
       'Express API on MySQL with Prisma, JWT auth, role-based permissions and subscription-gated access',
       'Real-time messaging and presence over Socket.IO, with in-app, email, SMS and push notification channels',
