@@ -3,9 +3,9 @@ import Providers from '@/components/providers';
 import { links, profile } from '@/data/profile';
 import './globals.css';
 
-const description = `${profile.name} — ${profile.title}. ${profile.tagline}`;
+const description = `${profile.name}, ${profile.title}. ${profile.tagline}`;
 
-const title = `${profile.name} — ${profile.title}`;
+const title = `${profile.name} | ${profile.title}`;
 const ogImage = { url: '/og.png', width: 1200, height: 630, alt: title };
 
 export const metadata: Metadata = {

@@ -17,7 +17,7 @@ export interface AppMeta {
   id: AppId;
   title: string;
   description: string;
-  /** Fluent "Color" icon — the multi-colour style Windows 11 uses for apps. */
+  /** Fluent "Color" icon: the multi-colour style Windows 11 uses for apps. */
   icon: FluentIcon;
   size: { width: number; height: number };
 }

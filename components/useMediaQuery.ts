@@ -15,8 +15,8 @@ export function useMediaQuery(query: string) {
   );
 }
 
-/** WinUI "Small" size class — phones. The desktop metaphor is dropped here. */
+/** WinUI "Small" size class (phones). The desktop metaphor is dropped here. */
 export const useIsSmall = () => useMediaQuery(SMALL_QUERY);
 
-/** WinUI "Large" size class — room for the desktop chrome alongside a window. */
+/** WinUI "Large" size class: room for the desktop chrome alongside a window. */
 export const useIsLarge = () => useMediaQuery(LARGE_QUERY);

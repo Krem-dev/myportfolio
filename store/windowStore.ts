@@ -35,7 +35,7 @@ function topmostVisible(windows: WindowState[], exclude?: AppId): AppId | null {
 const ICON_COLUMN = 104;
 const PROFILE_WIDGET = 392;
 const MIN_WORK_AREA = 640;
-// WinUI's Large size class — below this the profile widget is hidden, so the
+// WinUI's Large size class. Below this the profile widget is hidden, so the
 // whole width is free for windows (see components/desktop.tsx).
 const LARGE_BREAKPOINT = 1008;
 

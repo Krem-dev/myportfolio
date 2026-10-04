@@ -58,7 +58,7 @@ const useStyles = makeStyles({
   hint: { color: tokens.colorNeutralForeground3 },
   intro: {
     display: 'flex',
-    // Fluent's Card is a column by default — say row explicitly or it wins.
+    // Fluent's Card is a column by default, so say row explicitly or it wins.
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -87,7 +87,7 @@ function execCommandCopy(value: string): boolean {
   }
 }
 
-/** Tracks which row was copied — and which failed, so a blocked clipboard isn't silent. */
+/** Tracks which row was copied, and which failed, so a blocked clipboard isn't silent. */
 function useCopy() {
   const [state, setState] = useState<{ key: string; ok: boolean } | null>(null);
   const copy = useCallback(async (key: string, value: string) => {
@@ -118,7 +118,7 @@ export default function Contact() {
   /** Hands the typed message to the visitor's own email client, fully pre-filled. */
   const openMailClient = () => {
     const subject = encodeURIComponent(`Portfolio enquiry from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
+    const body = encodeURIComponent(`${form.message}\n\nFrom: ${form.name} (${form.email})`);
     window.location.href = `mailto:${links.email}?subject=${subject}&body=${body}`;
     setStatus('mailto');
   };
@@ -127,7 +127,7 @@ export default function Contact() {
     e.preventDefault();
 
     if (!links.formspreeId) {
-      // No form backend configured — the visitor's email client is the only route.
+      // No form backend configured, so the visitor's email client is the only route.
       openMailClient();
       return;
     }
@@ -196,7 +196,7 @@ export default function Contact() {
               <MessageBar intent="success">
                 <MessageBarBody>
                   <MessageBarTitle>Message sent</MessageBarTitle>
-                  Thanks — I&apos;ll get back to you soon.
+                  Thanks, I&apos;ll get back to you soon.
                 </MessageBarBody>
               </MessageBar>
             )}

@@ -1,6 +1,6 @@
-# Isaac Yaw Amponsah — Portfolio
+# Isaac Yaw Amponsah: Portfolio
 
-A Windows 11–style portfolio built with Next.js, Fluent UI v9 and Tailwind CSS. Visitors land on a desktop with the About window already open; on phones it becomes a home screen and apps open full-screen.
+A Windows 11-style portfolio built with Next.js and Fluent UI v9. Visitors land on a desktop with the About window already open; on phones it becomes a home screen and apps open full-screen.
 
 ## Run locally
 
@@ -13,7 +13,7 @@ Open http://localhost:3000.
 
 ## Editing content
 
-All text lives in [`data/profile.ts`](data/profile.ts) — name, bio, projects, experience, education, certifications, skills and links. Every window reads from it, so update it once and the whole site (including the printable résumé) follows.
+All text lives in [`data/profile.ts`](data/profile.ts): name, bio, projects, experience, education, certifications, skills and links. Every window reads from it, so update it once and the whole site (including the printable résumé) follows.
 
 Optional extras:
 

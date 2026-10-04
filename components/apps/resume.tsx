@@ -89,7 +89,7 @@ function Entry({ title, org, dates }: { title: string; org: string; dates: strin
     <div className={s.entry}>
       <div>
         <span className={s.entryTitle}>{title}</span>
-        <span className={s.entryOrg}> — {org}</span>
+        <span className={s.entryOrg}> · {org}</span>
       </div>
       <span className={s.dates}>{dates}</span>
     </div>
@@ -103,7 +103,7 @@ export default function Resume() {
   return (
     <div className={s.root}>
       <div className={s.bar}>
-        <Caption1 className={s.barLabel}>{profile.name} — Résumé</Caption1>
+        <Caption1 className={s.barLabel}>{profile.name} · Résumé</Caption1>
         <Toolbar size="small">
           {links.resumePdf && (
             <>
@@ -117,7 +117,7 @@ export default function Resume() {
               <Button
                 as="a"
                 href={links.resumePdf}
-                download="Isaac Yaw Amponsah — CV.pdf"
+                download="Isaac Yaw Amponsah CV.pdf"
                 appearance="primary"
                 size="small"
                 icon={<ArrowDownloadRegular />}
@@ -198,7 +198,7 @@ export default function Resume() {
           <ul className={s.certs}>
             {certifications.map((c) => (
               <li key={c.name}>
-                {c.name} <span className={s.entryOrg}>— {c.issuer}</span>
+                {c.name} <span className={s.entryOrg}>· {c.issuer}</span>
               </li>
             ))}
           </ul>

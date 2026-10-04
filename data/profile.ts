@@ -1,5 +1,5 @@
 // Single source of truth for everything shown on the site.
-// Edit this file to update the portfolio — every window reads from it.
+// Edit this file to update the portfolio. Every window reads from it.
 
 export type ProjectCategory = 'Enterprise' | 'Mobile' | 'Web' | 'Embedded & AI' | 'Systems';
 
@@ -12,7 +12,7 @@ export interface Project {
   highlights: string[];
   metric?: { value: string; label: string };
   stack: string[];
-  /** Optional artwork shown on the detail page — a poster, screenshot or diagram. */
+  /** Optional artwork shown on the detail page: a poster, screenshot or diagram. */
   image?: { src: string; alt: string; caption?: string; width: number; height: number };
   links?: { live?: string; code?: string; appStore?: string; playStore?: string };
   featured?: boolean;
@@ -43,7 +43,7 @@ export interface Certification {
   name: string;
   issuer: string;
   date?: string;
-  /** Public verification page — omitted where only a PDF certificate exists. */
+  /** Public verification page. Omitted where only a PDF certificate exists. */
   credentialUrl?: string;
 }
 
@@ -60,10 +60,10 @@ export const profile = {
   tagline:
     'I build business applications, workflow automations and data tools that real operations depend on.',
   bio: [
-    "I'm a Microsoft-certified software engineer (AZ-204) in the Digital Technology team at AngloGold Ashanti's Obuasi Mine. I design, build and support the business applications behind a large mining operation — from Power Platform workflows used by 1,400+ employees to system deployments across multiple sites.",
+    "I'm a Microsoft-certified software engineer (AZ-204) in the Digital Technology team at AngloGold Ashanti's Obuasi Mine. I design, build and support the business applications behind a large mining operation, from Power Platform workflows used by 1,400+ employees to system deployments across multiple sites.",
     'I studied Computer Engineering at KNUST, graduating with First Class honours, and trained in backend engineering with ALX. My work spans Node.js, C# and Python services, SQL Server and Power BI reporting, data integration with FME Workbench and SSIS, ArcGIS Survey123 field apps, and embedded machine learning.',
-    'Outside that, I co-founded SleekTeq Solutions, where I lead the backend on client web and mobile products, and I build JUGOP HUB — a request network that connects mining companies with verified suppliers and contractors.',
-    'I enjoy turning slow, manual processes into reliable, well-documented software — and working closely with the people who use it every day.',
+    'Outside that, I co-founded SleekTeq Solutions, where I lead the backend on client web and mobile products, and I build JUGOP HUB, a request network that connects mining companies with verified suppliers and contractors.',
+    'I enjoy turning slow, manual processes into reliable, well-documented software, and I like working closely with the people who use it every day.',
   ],
   highlights: [
     { kind: 'people', value: '1,400+', label: 'employees use an app I built' },
@@ -89,7 +89,7 @@ export const profile = {
 };
 
 export const links = {
-  /** Canonical origin — www redirects here. Used for metadata, sitemap and robots. */
+  /** Canonical origin (www redirects here). Used for metadata, sitemap and robots. */
   site: 'https://iamponsah.com',
   email: 'yawamp27@gmail.com',
   phone: '+233 55 850 7341',
@@ -97,7 +97,7 @@ export const links = {
   github: 'https://github.com/Krem-dev',
   linkedin: 'https://www.linkedin.com/in/isaac-amponsah/',
   blog: 'https://kremlin.hashnode.dev/',
-  // Generated from this file by `npm run resume` — never hand-edited, and never includes referees.
+  // Generated from this file by `npm run resume`. Never hand-edited, and never includes referees.
   resumePdf: '/resume.pdf' as string | undefined,
   // Optional: create a free form at formspree.io and put its ID here to receive messages directly.
   formspreeId: process.env.NEXT_PUBLIC_FORMSPREE_ID,
@@ -162,10 +162,10 @@ export const projects: Project[] = [
     context: 'Partnership · jugop-hub.com',
     category: 'Web',
     summary:
-      'A request network for the global mining industry. Members post a need — equipment, parts, contractors, consultants, services or talent — and it is matched and broadcast to verified providers, who respond with offers. The requester compares, awards one, and both sides rate each other.',
+      'A request network for the global mining industry. Members post a need (equipment, parts, contractors, consultants, services or talent), and it is matched and broadcast to verified providers, who respond with offers. The requester compares, awards one, and both sides rate each other.',
     highlights: [
-      'Sole engineer: designed and built the whole platform — public site, member portal, admin console and REST API in one TypeScript monorepo',
-      'One workflow for every kind of need — post, AI-ranked match, broadcast, offer, award, rate',
+      'Sole engineer: designed and built the whole platform, including the public site, member portal, admin console and REST API, in one TypeScript monorepo',
+      'One workflow for every kind of need: post, AI-ranked match, broadcast, offer, award, rate',
       'Express API on MySQL with Prisma, JWT auth, role-based permissions and subscription-gated access',
       'Real-time messaging and presence over WebSockets, with in-app, email, SMS and push notification channels',
       'Paystack subscriptions, Azure Blob media storage and scheduled jobs for expiry and offer windows',
@@ -253,7 +253,7 @@ export const experience: Role[] = [
     points: [
       'Build, configure and maintain business applications on Microsoft Power Platform (Power Apps, Power Automate, SharePoint).',
       'Test and validate in-house applications before deployment, resolving issues to ensure performance and data accuracy.',
-      'Support end users across the mine — gathering feedback, resolving issues and turning needs into system improvements.',
+      'Support end users across the mine by gathering feedback, resolving issues and turning needs into system improvements.',
       'Work with vendors on support and updates for DMSI MAINTelligence, Deswik, SKF Analysis and ETAP.',
       'Support Microsoft SQL Server databases and internal applications, including queries and troubleshooting.',
       'Build Power BI reports and dashboards for data-driven decisions across departments.',
@@ -299,12 +299,12 @@ export const education: Study[] = [
     note: 'First Class Honours',
     points: [
       'Coursework: Operating Systems, Software Engineering, Data Structures & Algorithms, Networking, Database Systems, Embedded Systems',
-      'Research: Side-channel attacks on IoT devices — techniques and countermeasures',
+      'Research: side-channel attacks on IoT devices and their countermeasures',
     ],
   },
   {
     school: 'African Leadership X (ALX)',
-    program: 'Software Engineering — Backend Specialization',
+    program: 'Software Engineering, Backend Specialization',
     start: 'Aug 2022',
     end: 'Nov 2023',
     points: ['Python, JavaScript, Linux, APIs, databases and backend architecture'],

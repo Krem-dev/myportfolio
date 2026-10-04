@@ -74,7 +74,7 @@ const useStyles = makeStyles({
 });
 
 /**
- * How many of the listed projects each skill area actually appears in — counted
+ * How many of the listed projects each skill area actually appears in, counted
  * from the project stacks rather than from a self-assessed proficiency score.
  */
 function useProjectReach(): HorizontalBarChartWithAxisDataPoint[] {
@@ -104,7 +104,7 @@ export default function Skills() {
   const s = useStyles();
   const reach = useProjectReach();
   const [chartRef, chartWidth] = useElementWidth<HTMLDivElement>();
-  // 0 before the first measurement — assume the roomy layout until we know better.
+  // 0 before the first measurement, so assume the roomy layout until we know better.
   const narrow = chartWidth > 0 && chartWidth < 520;
   // Project counts are whole numbers, so the axis shouldn't offer halves.
   const wholeNumberTicks = useMemo(
@@ -155,7 +155,7 @@ export default function Skills() {
             />
           </div>
           <Caption1 className={s.chartNote}>
-            Counted from the stacks of the {projects.length} projects listed on this site — not a self-rated
+            Counted from the stacks of the {projects.length} projects listed on this site, not a self-rated
             proficiency score.
           </Caption1>
         </Surface>

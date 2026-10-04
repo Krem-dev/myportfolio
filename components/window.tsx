@@ -69,13 +69,13 @@ const useStyles = makeStyles({
   content: {
     flex: 1,
     minHeight: 0,
-    // Window content sizes itself against this pane, not the viewport — a window
+    // Window content sizes itself against this pane, not the viewport, because a window
     // can be narrow on a wide screen.
     containerName: PANE,
     containerType: 'inline-size',
     // Fluent 2 asks for a 44x44 minimum touch target on web and iOS. Applied once
     // here so every window inherits it, rather than per control in six files.
-    // Inline links inside prose are deliberately excluded — WCAG 2.5.8 exempts them,
+    // Inline links inside prose are deliberately excluded: WCAG 2.5.8 exempts them,
     // and padding them out would wreck the résumé's document layout.
     [PANE_SMALL]: {
       '& .fui-Button, & .fui-ToolbarButton': { minHeight: TOUCH_TARGET, minWidth: TOUCH_TARGET },

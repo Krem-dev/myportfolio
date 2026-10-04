@@ -4,7 +4,7 @@
  * https://learn.microsoft.com/en-us/windows/apps/design/layout/screen-sizes-and-breakpoints-for-responsive-design
  */
 
-/** Viewport queries — for the shell: desktop, taskbar, Start menu, window chrome. */
+/** Viewport queries for the shell: desktop, taskbar, Start menu, window chrome. */
 export const SMALL = '@media (max-width: 640px)';
 export const BELOW_LARGE = '@media (max-width: 1007px)';
 
@@ -12,7 +12,7 @@ export const SMALL_QUERY = '(max-width: 640px)';
 export const LARGE_QUERY = '(min-width: 1008px)';
 
 /**
- * Container queries — for anything *inside* a window. A window can be 500px wide
+ * Container queries, for anything *inside* a window. A window can be 500px wide
  * on a 4K display, so its content has to react to the pane, not the viewport.
  * Every window's scroll area declares this container (see components/window.tsx).
  */

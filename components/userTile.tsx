@@ -6,7 +6,7 @@ import { tokens } from '@fluentui/react-components';
 import { profile } from '@/data/profile';
 
 /**
- * The personal mark on the boot screen — the photo, the way Windows shows an
+ * The personal mark on the boot screen: the photo, the way Windows shows an
  * account picture at sign-in. Initials are only a fallback for when there is no
  * photo set, or it fails to load.
  */
@@ -21,7 +21,7 @@ export default function UserTile({ size = 72 }: { size?: number }) {
         aria-hidden
         width={size}
         height={size}
-        // Never lazy — this is the first thing painted. The preload itself lives in
+        // Never lazy, since this is the first thing painted. The preload itself lives in
         // app/layout.tsx so it applies even when the boot screen is skipped.
         loading="eager"
         onError={() => setFailed(true)}

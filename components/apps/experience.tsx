@@ -60,7 +60,7 @@ function duration(start: string, end: string): string {
   return parts.join(' ');
 }
 
-/** Short label for the chart's y-axis — the full name is in the card below it. */
+/** Short label for the chart's y-axis. The full name is in the card below it. */
 function shortOrg(org: string): string {
   return org === 'Kwame Nkrumah University of Science and Technology' ? 'KNUST' : org.replace(' (ALX)', '');
 }
@@ -219,7 +219,7 @@ function timelineBars(roles: Role[], studies: Study[], narrow: boolean): GanttCh
 export default function Experience() {
   const s = useStyles();
   const [chartRef, chartWidth] = useElementWidth<HTMLDivElement>();
-  // 0 before the first measurement — assume the roomy layout until we know better.
+  // 0 before the first measurement, so assume the roomy layout until we know better.
   const narrow = chartWidth > 0 && chartWidth < 520;
   const bars = timelineBars(experience, education, narrow);
 

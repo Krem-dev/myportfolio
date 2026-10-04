@@ -1,6 +1,6 @@
 /**
  * Renders public/resume.pdf straight from data/profile.ts, so the downloadable CV
- * can never drift from what the site says. Deliberately omits referees — their
+ * can never drift from what the site says. Deliberately omits referees, so their
  * contact details stay out of anything public.
  *
  *   npm run resume
@@ -51,7 +51,7 @@ function entry(title: string, org: string, dates: string) {
   const dateW = doc.font('Helvetica').fontSize(8.5).widthOfString(dates) + 14;
   const textW = width - dateW;
   doc.font('Helvetica-Bold').fontSize(10).fillColor(INK).text(title, left, y, { width: textW, continued: true });
-  doc.font('Helvetica').fillColor(MUTED).text(` — ${org}`, { width: textW });
+  doc.font('Helvetica').fillColor(MUTED).text(` · ${org}`, { width: textW });
   const afterText = doc.y;
   doc.font('Helvetica').fontSize(8.5).fillColor(MUTED).text(dates, left, y + 1.5, { width, align: 'right' });
   doc.y = Math.max(afterText, y + 13);
@@ -156,7 +156,7 @@ async function main() {
   certifications.forEach((c, i) => {
     if (i === 0 || i === half) doc.y = certTop;
     const colX = left + (i < half ? 0 : colW + 18);
-    doc.font('Helvetica').fontSize(9.5).fillColor(BODY).text(`${c.name} — ${c.issuer}`, colX, doc.y, { width: colW });
+    doc.font('Helvetica').fontSize(9.5).fillColor(BODY).text(`${c.name} · ${c.issuer}`, colX, doc.y, { width: colW });
     doc.y += 2;
     certBottom = Math.max(certBottom, doc.y);
   });
