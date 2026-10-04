@@ -266,7 +266,7 @@ export const experience: Role[] = [
     org: 'SleekTeq Solutions',
     unit: 'Custom software, web and mobile apps',
     location: 'Ghana · Remote',
-    start: 'Jan 2026',
+    start: 'Dec 2025',
     end: 'Present',
     concurrent: true,
     points: [
@@ -321,6 +321,7 @@ export const certifications: Certification[] = [
   {
     name: 'Azure Fundamentals (AZ-900)',
     issuer: 'Microsoft',
+    date: 'Dec 2025',
     credentialUrl: 'https://learn.microsoft.com/en-gb/users/isaacamponsah-3463/credentials/6133c5dc652499be',
   },
   { name: 'Power BI Reporting', issuer: 'Seidor Analytics', date: 'Nov 2025' },

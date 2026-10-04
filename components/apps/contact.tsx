@@ -108,6 +108,8 @@ export default function Contact() {
   const s = useStyles();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<Status>('idle');
+  // Why the last send failed: Formspree's own message when it rejected the form, null when the request never got through.
+  const [rejection, setRejection] = useState<string | null>(null);
   const { state: copyState, copy } = useCopy();
 
   const update = (key: keyof typeof form) => (_: unknown, data: { value: string }) =>
@@ -131,16 +133,25 @@ export default function Contact() {
     }
 
     setStatus('sending');
+    setRejection(null);
     try {
       const res = await fetch(`https://formspree.io/f/${links.formspreeId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(form),
+        // A blocked or stalled request shouldn't leave the button spinning forever.
+        signal: AbortSignal.timeout(15_000),
       });
-      if (!res.ok) throw new Error(String(res.status));
+      if (!res.ok) {
+        const data: { error?: string; errors?: { message?: string }[] } = await res.json().catch(() => ({}));
+        setRejection(data.errors?.map((e) => e.message).filter(Boolean).join(' ') || data.error || `Error ${res.status}`);
+        setStatus('error');
+        return;
+      }
       setStatus('sent');
       setForm({ name: '', email: '', message: '' });
     } catch {
+      // Network failure: offline, a work network or browser extension blocking formspree.io, or the timeout above.
       setStatus('error');
     }
   };
@@ -201,7 +212,9 @@ export default function Contact() {
               <MessageBar intent="error">
                 <MessageBarBody>
                   <MessageBarTitle>Couldn&apos;t send</MessageBarTitle>
-                  The form service didn&apos;t respond. Try again, or send it from your own email app.
+                  {rejection
+                    ? `${rejection}. Fix that and try again, or send it from your own email app.`
+                    : 'Your network or a browser extension may be blocking the form. Try again, or send it from your own email app.'}
                 </MessageBarBody>
                 <MessageBarActions>
                   <Button size="small" onClick={openMailClient}>
