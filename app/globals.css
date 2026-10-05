@@ -42,6 +42,12 @@
 html,
 body {
   height: 100%;
+}
+
+/* The desktop is a fixed overlay, so the page behind it must not scroll — but
+   only once it exists. Without JavaScript the semantic document is the page. */
+html.app-ready,
+html.app-ready body {
   overflow: hidden;
 }
 
@@ -115,3 +121,42 @@ body {
     background: #fff !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   The plain document underneath the desktop. Styled for the people who actually
+   see it: visitors without JavaScript, and anyone reading the page as text.
+   --------------------------------------------------------------------------- */
+
+.app-cover {
+  position: fixed;
+  inset: 0;
+  /* Must sit above the document but below the desktop, which carries no z-index
+     of its own and wins on DOM order alone. */
+  z-index: 0;
+  background-color: var(--win-wallpaper);
+  background-image: var(--win-wallpaper-image);
+  background-size: cover;
+  background-position: center bottom;
+}
+
+.doc {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+  color: #1a1a1a;
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+.doc h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 0.25rem; }
+.doc h2 { font-size: 1.25rem; margin: 2.5rem 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 1px solid #d9d9d9; }
+.doc h3 { font-size: 1rem; margin: 1.5rem 0 0.2rem; }
+.doc p { margin: 0 0 0.75rem; }
+.doc ul, .doc dl { margin: 0 0 1rem; padding-left: 1.1rem; }
+.doc li { margin-bottom: 0.3rem; }
+.doc dt { font-weight: 600; margin-top: 0.6rem; }
+.doc dd { margin: 0 0 0.3rem; }
+.doc a { color: #0f6cbd; }
+.doc-lead { font-size: 1.05rem; color: #444444; }
+.doc-meta { color: #5a5a5a; font-size: 0.9rem; }
+.doc-inline { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; }
