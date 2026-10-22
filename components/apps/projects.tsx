@@ -92,6 +92,8 @@ const projectIcons: Record<string, FluentIcon> = {
   'jugop-hub': PeopleInterwovenColor,
   'mine-entry': LockShieldColor,
   safedrive: ScanPersonColor,
+  'olive-path': BookOpenColor,
+  bonnyskin: GlobeColor,
   'internship-portal': FormColor,
   'simple-shell': CodeBlockColor,
 };
@@ -254,6 +256,18 @@ const useStyles = makeStyles({
 });
 
 function ProjectIcon({ project, size }: { project: Project; size: number }) {
+  if (project.icon) {
+    return (
+      <Image
+        src={project.icon}
+        alt=""
+        width={size}
+        height={size}
+        style={{ borderRadius: size >= 48 ? 12 : 6, objectFit: 'contain' }}
+        unoptimized
+      />
+    );
+  }
   const Icon = projectIcons[project.id] ?? CodeBlockColor;
   return <Icon fontSize={size} aria-hidden />;
 }

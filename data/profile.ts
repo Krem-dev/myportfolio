@@ -12,6 +12,8 @@ export interface Project {
   highlights: string[];
   metric?: { value: string; label: string };
   stack: string[];
+  /** Square app icon shown in project lists and detail pages instead of a generic Fluent icon. */
+  icon?: string;
   /** Optional artwork shown on the detail page: a poster, screenshot or diagram. */
   image?: { src: string; alt: string; caption?: string; width: number; height: number };
   links?: { live?: string; code?: string; appStore?: string; playStore?: string };
@@ -150,6 +152,7 @@ export const projects: Project[] = [
       'Contributed to the React Native (Expo) app with the frontend team',
     ],
     stack: ['React Native', 'Expo', 'TypeScript', 'Express', 'MySQL', 'Firebase', 'Paystack'],
+    icon: '/projects/evitals-icon.jpg',
     links: {
       appStore: 'https://apps.apple.com/gh/app/e-vitals/id6783346032',
       playStore: 'https://play.google.com/store/apps/details?id=com.sleekteq.evitals',
@@ -184,6 +187,7 @@ export const projects: Project[] = [
       'Redis',
       'Azure',
     ],
+    icon: '/projects/jugop-icon.png',
     links: { live: 'https://www.jugop-hub.com' },
     featured: true,
   },
@@ -219,6 +223,42 @@ export const projects: Project[] = [
       width: 906,
       height: 1280,
     },
+  },
+  {
+    id: 'olive-path',
+    name: 'OlivePath',
+    context: 'Client project · olivepathnetwork.org',
+    category: 'Mobile',
+    summary:
+      'A mobile app for OlivePath Network that brings daily devotions, a digital book library with an in-app reader, prayer request submissions, counselling bookings, inspirational quotes and push notifications to believers across the globe.',
+    highlights: [
+      'Built the Express + TypeScript REST API on MySQL with JWT auth and Google sign-in',
+      'In-app book store with chapter-by-chapter reader, bookmarks and reading progress',
+      'Weekly devotions with audio player, prayer requests and counselling booking flow',
+      'Firebase push notifications, Paystack payments and Cloudinary media storage',
+      'Directus CMS for admin content management',
+      'Contributed to the React Native (Expo) mobile app with Fluent UI React Native components',
+    ],
+    stack: ['React Native', 'Expo', 'TypeScript', 'Express', 'MySQL', 'Firebase', 'Directus', 'Paystack'],
+    icon: '/projects/olivepath-icon.png',
+    links: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.ebroni.olivepath',
+    },
+  },
+  {
+    id: 'bonnyskin',
+    name: 'Bonnyskin ByOlives',
+    context: 'Client project · E-commerce',
+    category: 'Web',
+    summary:
+      'An online skincare store built on WordPress and WooCommerce with a fully custom theme, featuring a curated product catalogue, cart, checkout and a branded editorial design.',
+    highlights: [
+      'Designed and built a custom WordPress theme from scratch with WooCommerce integration',
+      'Product catalogue, cart, checkout and order management',
+      'Responsive, editorial design with custom typography and an olive-and-gold colour palette',
+    ],
+    stack: ['WordPress', 'WooCommerce', 'PHP', 'CSS', 'JavaScript'],
+    icon: '/projects/bonnyskin-icon.png',
   },
   {
     id: 'internship-portal',
