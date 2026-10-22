@@ -116,6 +116,7 @@ const useStyles = makeStyles({
     flexShrink: 0,
     backgroundColor: 'transparent',
     borderRight: 'none',
+    '& .fui-NavItem': { backgroundColor: 'transparent' },
   },
   navCount: { marginLeft: 'auto' },
   pane: {
